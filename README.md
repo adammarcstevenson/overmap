@@ -54,3 +54,6 @@ $ npm run build-prod
 
 ### 5. Deploy
 Deploy the built files in your `public` directory to any static hosting service. I use and recommend [Firebase](https://firebase.google.com/)!
+
+## Release Notes
+See [OverMap Release Notes](./release-notes.md).
