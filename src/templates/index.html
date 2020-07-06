@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>OverMap</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-92224273-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-92224273-2');
+    </script>
+  </head>
+  <body>
+    <div class="ui-layer">
+      <div class="logo">
+        <img src="../img/overmap-logo-white.svg" alt="OverMap logo" height="100" />
+      </div>
+      <div class="overlay-container ui-container">
+        <div class="overlay ui-card">
+          <input type="checkbox" id="overlay" />
+          <label for="overlay" class="switch"></label>
+          <label for="overlay" class="overlay-label">Overlay</label>
+        </div>
+      </div>
+      <div class="map-menu-container ui-container">
+        <div class="map-menu ui-card">
+          <div class="map-menu-item">
+            <div class="map-menu-item-radio">
+              <input type="radio" name="map-menu-items" id="map-menu-item-1" value="map1" checked disabled />
+              <label for="map-menu-item-1">Map 1</label>
+            </div>
+            <input type="search" id="map-search-1" class="map-search" placeholder="Enter a city" readonly />
+          </div>
+          <div class="map-menu-item">
+            <div class="map-menu-item-radio">
+              <input type="radio" name="map-menu-items" id="map-menu-item-2" value="map2" disabled />
+              <label for="map-menu-item-2">Map 2</label>
+            </div>
+            <input type="search" id="map-search-2" class="map-search" placeholder="Enter a city" readonly />
+          </div>
+        </div>
+      </div>
+      <div class="zoom-slider-container ui-container">
+        <div class="zoom-slider ui-card">
+          <input type="range" id="zoom" min="0" max="22" step="1" />
+        </div>
+      </div>
+      <div class="info-icon ui-card">
+        <button id="info-icon">i</button>
+      </div>
+      <div id="info-box"></div>
+    </div>
+    <div class="map-container">
+      <div class="map left selected" id="map1"></div>
+      <div class="map right" id="map2"></div>
+    </div>
+    <div id="display-validation-dialog" class="full-screen-dialog hidden">
+      <img src="../img/overmap-logo-black.svg" alt="OverMap logo" height="50" />
+      <p>OverMap works best on larger displays. Adjust your browser window to increase its size, or come back on a device with a larger screen.</p>
+    </div>
+    <noscript>
+      <div class="full-screen-dialog">
+        <img src="../img/overmap-logo-black.svg" alt="OverMap logo" height="50" />
+        <p>OverMap doesn't work without JavaScript. Enable JavaScript on this page to continue.</p>
+      </div>
+    </noscript>
+  </body>
+</html>

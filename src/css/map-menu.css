@@ -1,0 +1,33 @@
+/* Map Menu */
+.map-menu-container {
+  justify-content: flex-end;
+  padding: 20px;
+  width: 100%;
+}
+.map-menu {
+  width: 360px;
+  padding: 10px 15px;
+}
+.map-menu-item {
+  display: flex;
+  align-items: center;
+  align-content: stretch;
+  padding: 10px 0;
+}
+.map-menu-item > * {
+  flex: 0 1 auto;
+  margin: 0 5px;
+}
+.map-search {
+  flex: 1;
+  margin-left: 15px;
+  padding: 8px 10px;
+  border: 1px solid #969696;
+  border-radius: 4px;
+}
+.map-search[readonly] {
+  background-color: #efefef;
+}
+.map-search:focus {
+  cursor: text;
+}

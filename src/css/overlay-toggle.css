@@ -1,0 +1,51 @@
+/* Overlay Switch */
+.overlay-container {
+  justify-content: center;
+  top: auto;
+  left: auto;
+  bottom: 0;
+  width: 100%;
+  padding: 40px;
+}
+.overlay {
+  padding: 20px;
+}
+.switch {
+  position : relative ;
+  display : inline-block;
+  vertical-align: bottom;
+  width : 40px;
+  height : 20px;
+  background-color: #cccccc;
+  border-radius: 20px;
+  opacity: 0.8;
+  transition: 0.2s opacity;
+}
+.switch:hover {
+  opacity: 1;
+}
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: white;
+  transition: 0.1s linear;
+}
+#overlay:checked + .switch::after {
+  left: 20px; 
+}
+#overlay:checked + .switch {
+  background-color: #2196f3;
+}
+#overlay {
+  display: none;
+}
+.overlay-label {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+}
