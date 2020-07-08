@@ -125,6 +125,24 @@
 .info-box-item.selected {
   display: block;
 }
+.github-button {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 20px;;
+}
+.github-button > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8em 1.5em;
+  background: #222222;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+}
+.github-button > a > img {
+  margin-right: 10px;
+}
 .info-box-item .img {
   text-align: center;
 }
@@ -138,10 +156,6 @@
   text-align: center;
   z-index: 4;
 }
-.highlight-link {
-  margin: 1.5em;
-  text-align: center;
-}
 
 /*
  * Generic Components
@@ -152,6 +166,10 @@ ul {
 }
 ul > li {
   margin-bottom: 1em;
+}
+.highlight-link {
+  margin: 1.5em;
+  text-align: center;
 }
 .highlight-link a {
   font-size: 1.1em;
