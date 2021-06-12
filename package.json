@@ -10,7 +10,7 @@
     "deploy": "firebase deploy --only hosting:overmap"
   },
   "dependencies": {
-    "google-maps": "^4.2.3",
+    "google-maps": "^4.3.3",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
