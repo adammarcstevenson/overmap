@@ -1,6 +1,6 @@
 {
   "name": "overmap",
-  "version": "2020.7.7",
+  "version": "2022.1.17",
   "private": true,
   "scripts": {
     "watch": "webpack --watch",
