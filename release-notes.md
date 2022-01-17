@@ -1,6 +1,6 @@
 # OverMap Release Notes
 
-## 17 January 2021
+## 17 January 2022
 **Version 2022.1.17**
 - Upgraded all dependencies to latest major version
 
