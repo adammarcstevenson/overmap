@@ -1,6 +1,6 @@
 import { getLocalStorage, setLocalStorage } from './utils/local-storage'
 import styles from './map-styles/grayscale.json'
-import { maps, overlay, zoom } from './defaults.json'
+import defaults from './defaults.json'
 
 /**
  * @class Model
@@ -10,10 +10,10 @@ import { maps, overlay, zoom } from './defaults.json'
  */
 export default class Model {
   constructor() {
-    this.maps = getLocalStorage('maps') || maps
+    this.maps = getLocalStorage('maps') || defaults.maps
     this.mapStyles = styles
-    this.overlay = getLocalStorage('overlay') || overlay
-    this.zoom = getLocalStorage('zoom') || zoom
+    this.overlay = getLocalStorage('overlay') || defaults.overlay
+    this.zoom = getLocalStorage('zoom') || defaults.zoom
   }
 
   // Model update functions

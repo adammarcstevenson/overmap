@@ -1,4 +1,4 @@
-import { maxZoom, minZoom } from './defaults.json'
+import defaults from './defaults.json'
 
 /**
  * @class Maps
@@ -15,8 +15,8 @@ export default class Map {
       controlSize: 25,
       disableDefaultUI: true,
       gestureHandling: 'auto',
-      maxZoom,
-      minZoom,
+      maxZoom: defaults.maxZoom,
+      minZoom: defaults.minZoom,
       scaleControl: true,
       styles,
       zoom

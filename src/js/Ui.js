@@ -1,4 +1,4 @@
-import { maxZoom, minZoom } from './defaults.json'
+import defaults from './defaults.json'
 import InfoBox from './InfoBox'
 import { decimalToDegrees } from './utils/convert-lat-lng'
 
@@ -32,8 +32,8 @@ export default class Ui {
     // Syncs UI with model data
     this.overlay.checked = overlay
     this.updateOverlay(overlay)
-    this.zoom.max = maxZoom
-    this.zoom.min = minZoom
+    this.zoom.max = defaults.maxZoom
+    this.zoom.min = defaults.minZoom
     this.zoom.value = zoom
 
     // Displays Size Validation
