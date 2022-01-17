@@ -1,4 +1,4 @@
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const common = require('./webpack.common')
 const Dotenv = require('dotenv-webpack')
 
@@ -9,23 +9,19 @@ module.exports = merge(common, {
     filename: 'main.js',
   },
   devServer: {
-    contentBase: './public',
+    static: {
+      directory: './public',
+    },
     hot: true
   },
   module: {
     rules: [
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'img/',
-              publicPath: 'img/'
-            }
-          }
-        ]
+        type: 'asset/resource',
+        generator: {
+          filename: 'img/[name].[ext]'
+        }
       }
     ]
   },
