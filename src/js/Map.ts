@@ -1,15 +1,27 @@
-import defaults from './defaults.json'
+import { defaults } from './defaults'
+import { GoogleMapsApi } from './GoogleMapsApiLoader'
 
 /**
  * @class Maps
- *
  * @classdesc Manages Google Maps components
- *
  */
 export default class Map {
-  constructor(id, google, el, { center, styles, zoom }, handlers) {
+  id: string
+  map: google.maps.Map
+  systemZoomChange: boolean
+
+  constructor(
+    id: string,
+    google: GoogleMapsApi,
+    el: Element,
+    { center, styles, zoom }: google.maps.MapOptions,
+    handlers: {
+      onMapIdle: (id: string, center: google.maps.LatLngLiteral) => void,
+      onZoomChange: (id: string, zoom: number) => void
+    }
+  ) {
     this.id = id
-    this.map = new google.maps.Map(el, {
+    this.map = new google.maps.Map(el as HTMLElement, {
       center,
       clickableIcons: false,
       controlSize: 25,
@@ -19,7 +31,7 @@ export default class Map {
       minZoom: defaults.minZoom,
       scaleControl: true,
       styles,
-      zoom
+      zoom,
     })
 
     // Adds map event listeners
@@ -32,18 +44,18 @@ export default class Map {
         this.systemZoomChange = false
       } else {
         const zoom = this.map.getZoom()
-      handlers.onZoomChange(id, zoom)
+        handlers.onZoomChange(id, zoom)
       }
     })
   }
   getCenter() {
     return this.map.getCenter().toJSON()
   }
-  updateCenter(center) {
+  updateCenter(center: google.maps.LatLngLiteral) {
     this.map.setCenter(center)
   }
-  updateZoom(zoom) {
-    this.systemZoomChange = true  // Set flag for programmatic zoom change
+  updateZoom(zoom: number) {
+    this.systemZoomChange = true // Set flag for programmatic zoom change
     this.map.setZoom(zoom)
   }
 }

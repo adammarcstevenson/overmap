@@ -1,19 +1,23 @@
-import defaults from './defaults.json'
+import { defaults } from './defaults'
 import InfoBox from './InfoBox'
 import { decimalToDegrees } from './utils/convert-lat-lng'
 
 /**
  * @class Ui
- *
  * Manages UI and map container components
- *
  */
 export default class Ui {
-  /**
-   * @param {boolean} overlay 
-   * @param {number} zoom 
-   */
-  constructor (overlay, zoom) {
+  maps: {
+    [key: string]: {
+      container: HTMLInputElement,
+      radioSelector: HTMLInputElement,
+      searchField: HTMLInputElement
+    }
+  }
+  overlay: HTMLInputElement
+  zoom: HTMLInputElement
+
+  constructor (overlay: boolean, zoom: number) {
     this.maps = {
       map1: {
         container: document.querySelector('#map1'),
@@ -32,9 +36,9 @@ export default class Ui {
     // Syncs UI with model data
     this.overlay.checked = overlay
     this.updateOverlay(overlay)
-    this.zoom.max = defaults.maxZoom
-    this.zoom.min = defaults.minZoom
-    this.zoom.value = zoom
+    this.zoom.max = defaults.maxZoom.toString()
+    this.zoom.min = defaults.minZoom.toString()
+    this.zoom.value = zoom.toString()
 
     // Displays Size Validation
     this.checkDisplaySize()
@@ -43,7 +47,7 @@ export default class Ui {
     // Adds UI component event listeners
     for (const id in this.maps) {
       const map = this.maps[id]
-      map.radioSelector.addEventListener('change', e => this.updateSelectedMap(e.target.value))
+      map.radioSelector.addEventListener('change', e => this.updateSelectedMap((e.target as HTMLInputElement).value))
       map.searchField.addEventListener('click', () => {
         if (map.searchField.readOnly) this.resetMapSearchField(map.searchField)
       })
@@ -51,12 +55,12 @@ export default class Ui {
   }
 
   // UI change handler bindings
-  bindOverlayChange(handler) {
-    this.overlay.addEventListener('change', (e) => handler(e.target.checked))
+  bindOverlayChange(handler: (overlay: boolean) => void) {
+    this.overlay.addEventListener('change', (e) => handler((e.target as HTMLInputElement).checked))
   }
-  bindZoomChange(handler) {
-  this.zoom.addEventListener('input', (e) => {
-    setTimeout(() => handler('slider', parseInt(e.target.value), false), 100)  // setTimeout period implemented to improve performance
+  bindZoomChange(handler: (id: string, zoom: number) => void) {
+    this.zoom.addEventListener('input', (e) => {
+      setTimeout(() => handler('slider', parseInt((e.target as HTMLInputElement).value)), 100)  // setTimeout period implemented to improve performance
     })
   }
 
@@ -69,20 +73,20 @@ export default class Ui {
     else dialog.classList.add('hidden')
   }
   loadInfoBox() {
-    const div = document.querySelector('#info-box')
+    const div = document.querySelector('#info-box') as HTMLElement
     new InfoBox(div)
   }
-  resetMapSearchField(field) {
+  resetMapSearchField(field: HTMLInputElement) {
     field.value = ''
     field.readOnly = false
     field.focus()
   }
-  updateMapSearchField(id, center) {
+  updateMapSearchField(id: string, center: google.maps.LatLngLiteral) {
     const field = this.maps[id].searchField
     field.value = decimalToDegrees(center)
     field.readOnly = true
   }
-  updateOverlay(overlay) {
+  updateOverlay(overlay: boolean) {
     for (const id in this.maps) {
       const map = this.maps[id]
       if (overlay) {
@@ -94,7 +98,7 @@ export default class Ui {
       }
     }
   }
-  updateSelectedMap(selectedId) {
+  updateSelectedMap(selectedId: string) {
     /*
      * When the maps are set to overlay, changing the selected map triggers a cross-fade animation
      * between the two maps and changes the z-index ordering of the maps, bringing the selected map
@@ -103,7 +107,7 @@ export default class Ui {
      * The cross-fade animation works by cloning the deselected map and fading the clone to opacity 0.
      * Simultaneously, the "real" deselected map is moved "to the bottom" in z-index ordering and has
      * its opacity set to the default (100%). The selected map moves up in z-index ordering and has
-     * its opactity set to semi-transparent. Once all transitions are complete or interrupted, the cloned
+     * its opacity set to semi-transparent. Once all transitions are complete or interrupted, the cloned
      * map is removed, revealing the newly selected map "on top".
     **/
 
@@ -124,17 +128,17 @@ export default class Ui {
 
     // Clone the deselected map and add it to DOM
     const mapsContainer = document.querySelector('.map-container')
-    let clone = deselectedMap.cloneNode(true)
+    let clone = deselectedMap.cloneNode(true) as HTMLElement
     clone.id = `${deselectedMap.id}-clone`
     clone.classList.add('map-clone')
     mapsContainer.appendChild(clone)
 
     // Add an event listener to remove the clone after its opacity transition is complete
-    const deselectedTransitionhandler = (e) => {
-      if (e.propertyName === 'opacity') e.target.remove()
+    const deselectedTransitionHandler: (e: TransitionEvent) => void = (e) => {
+      if (e.propertyName === 'opacity') (e.target as HTMLElement).remove()
     }
-    clone.addEventListener('transitionend', deselectedTransitionhandler)
-    clone.addEventListener('transitioncancel', deselectedTransitionhandler)
+    clone.addEventListener('transitionend', deselectedTransitionHandler)
+    clone.addEventListener('transitioncancel', deselectedTransitionHandler)
 
     // Remove 'selected' class from the deselected map to jump the map to the back in z-index order and apply the default (100%) opacity
     deselectedMap.classList.remove('selected')
@@ -145,7 +149,7 @@ export default class Ui {
     // Request a browser re-render, then add the 'transition--deselected-clone' class to jump the cloned map to the top in z-index ordering and to initiate the opacity fade to 0
     window.requestAnimationFrame(() => { clone.classList.add('transition--deselected-clone') })
   }
-  updateZoomSlider(zoom) {
-    this.zoom.value = zoom
+  updateZoomSlider(zoom: number) {
+    this.zoom.value = zoom.toString()
   }
 }

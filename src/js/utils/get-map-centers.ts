@@ -1,3 +1,5 @@
+import Map from '../Map'
+
 /**
  * @function getDivCenter A function for getting the <div> center of the map, based on a user's perceived center of the map.
  * 
@@ -8,7 +10,7 @@
  * @return {LatLngLiteral} The [LatLngLiteral](https://developers.google.com/maps/documentation/javascript/reference/coordinates#LatLngLiteral) object representing the map's <div> center
  * 
  */
-export function getDivCenter(map, userCenter) {
+export function getDivCenter(map: Map, userCenter: google.maps.LatLngLiteral) {
   const m = map.map
   let divCenter = userCenter
   const boundaryLng = m.getBounds().getNorthEast().lng()
@@ -27,7 +29,7 @@ export function getDivCenter(map, userCenter) {
  * @return {LatLngLiteral} The [LatLngLiteral](https://developers.google.com/maps/documentation/javascript/reference/coordinates#LatLngLiteral) object representing the user's perceived center of the map
  * 
  */
-export function getUserCenter(map) {
+export function getUserCenter(map: Map) {
   const m = map.map
   let userCenter = map.getCenter()
   const boundaryLng = m.getBounds().getNorthEast().lng()

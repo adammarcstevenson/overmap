@@ -1,7 +1,9 @@
 import template from '../templates/info-box.html'
 
 export default class InfoBox {
-  constructor(div) {
+  infoBoxVisible: Boolean
+
+  constructor(div: HTMLElement) {
     this.infoBoxVisible = false
 
     // Loads HTML template into <div>
@@ -9,9 +11,9 @@ export default class InfoBox {
     
     const infoIcon = document.querySelector('#info-icon')
     const infoBoxCloseBtn = document.querySelector('#info-box-close-button')
-    const infoBoxContainer = document.querySelector('#info-box-container')
+    const infoBoxContainer = document.querySelector('#info-box-container') as HTMLElement
     const infoBoxTabs = document.querySelectorAll('input[name="info-box-tabs"]')
-
+    
     infoIcon.addEventListener('click', () => this.toggleInfoBox(infoBoxContainer))
     infoBoxCloseBtn.addEventListener('click', () => this.toggleInfoBox(infoBoxContainer))
     infoBoxContainer.addEventListener('click', (e) => {
@@ -19,11 +21,11 @@ export default class InfoBox {
       this.toggleInfoBox(infoBoxContainer)
     })
     infoBoxTabs.forEach(tab => {
-      tab.addEventListener('change', e => this.updateInfoBoxItems(e.target.value))
+      tab.addEventListener('change', e => this.updateInfoBoxItems((e.target as HTMLInputElement).value))
     })
   }
 
-  toggleInfoBox(container) {
+  toggleInfoBox(container: HTMLElement) {
     this.infoBoxVisible = !this.infoBoxVisible
     if (this.infoBoxVisible) {
       container.classList.remove('hidden')
@@ -35,7 +37,7 @@ export default class InfoBox {
       container.classList.add('hidden')
     }
   }
-  updateInfoBoxItems(value) {
+  updateInfoBoxItems(value: string) {
     const items = document.querySelectorAll('.info-box-item')
     items.forEach(item => {
       if (item.id === `info-box-item-${value}`) item.classList.add('selected')

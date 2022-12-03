@@ -4,9 +4,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: './src/index.ts',
-  output: {
-    path: path.resolve(__dirname, 'public'),
-  },
   module: {
     rules: [
       {
@@ -28,11 +25,14 @@ module.exports = {
         ]
       },
       {
-        test: /\.tsx?$/,
+        test: /\.ts$/,
         use: 'ts-loader',
         exclude: /node_modules/,
       },
     ]
+  },
+  output: {
+    path: path.resolve(__dirname, 'public'),
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -40,5 +40,8 @@ module.exports = {
       template: 'src/templates/index.html',
       title: 'OverMap'
     })
-  ]
+  ],
+  resolve: {
+    extensions: ['.ts', '.js'],
+  }
 }

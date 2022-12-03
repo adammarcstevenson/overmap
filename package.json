@@ -10,10 +10,11 @@
     "deploy": "firebase deploy --only hosting:overmap"
   },
   "dependencies": {
-    "google-maps": "^4.3.3",
+    "@googlemaps/js-api-loader": "^1.14.3",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
+    "@types/google.maps": "^3.50.1",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.5.1",
     "dotenv-webpack": "^7.0.3",
