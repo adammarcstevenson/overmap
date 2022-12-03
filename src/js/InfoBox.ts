@@ -23,6 +23,12 @@ export default class InfoBox {
     infoBoxTabs.forEach(tab => {
       tab.addEventListener('change', e => this.updateInfoBoxItems((e.target as HTMLInputElement).value))
     })
+
+    const currentCopyrightYearSpans = document.querySelectorAll('.current-copyright-year')
+    currentCopyrightYearSpans.forEach(span => {
+      const currentYear = new Date().getFullYear()
+      span.innerHTML = '&ndash;' + currentYear
+    })
   }
 
   toggleInfoBox(container: HTMLElement) {
