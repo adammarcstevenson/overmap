@@ -12,9 +12,9 @@ You can download, build, and run this project locally.
 
 ### 1. Clone the repo and install
 Clone this repo and install with npm.
-``` shell
-$ git clone https://github.com/adammarcstevenson/overmap
-$ npm install
+```sh
+git clone https://github.com/adammarcstevenson/overmap
+npm install
 ```
 
 ### 2. Get a Google API key
@@ -46,10 +46,10 @@ module.exports = {
 
 ### 4. Test and build
 Use the `serve`, `build-dev`, and `build-prod` scripts to test and build the project.
-``` shell
-$ npm run serve
-$ npm run build-dev
-$ npm run build-prod
+```sh
+npm run serve
+npm run build-dev
+npm run build-prod
 ```
 
 ### 5. Deploy

@@ -1,5 +1,10 @@
 # OverMap Release Notes
 
+## 3 December 2022
+**Version 2022.12.3**
+- Migrated the entire codebase to Typescript
+- Upgraded all dependencies to latest major version
+
 ## 17 January 2022
 **Version 2022.1.17**
 - Upgraded all dependencies to latest major version
