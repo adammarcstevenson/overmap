@@ -7,7 +7,9 @@
     "serve": "webpack-dev-server --open --config webpack/webpack.dev.js",
     "build-dev": "webpack --config webpack/webpack.dev.js",
     "build-prod": "webpack --config webpack/webpack.prod.js",
-    "deploy": "firebase deploy --only hosting:overmap"
+    "deploy": "webpack --config webpack/webpack.prod.js && firebase deploy --only hosting:overmap",
+    "deploy-only": "firebase deploy --only hosting:overmap",
+    "post-deploy": "npm pkg set version=$(date +'%Y.%-m.%-d')"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.15.1",
