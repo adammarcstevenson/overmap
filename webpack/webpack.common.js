@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: path.resolve('/src/index.ts'),
   module: {
     rules: [
       {
@@ -32,12 +32,12 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve('/public'),
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: 'src/templates/index.html',
+      template: path.resolve('/src/templates/index.html'),
       title: 'OverMap'
     })
   ],
