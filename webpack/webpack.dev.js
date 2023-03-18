@@ -11,7 +11,7 @@ module.exports = merge(common, {
   },
   devServer: {
     static: {
-      directory: path.resolve('/public'),
+      directory: path.resolve('./public'),
     },
     hot: true
   },

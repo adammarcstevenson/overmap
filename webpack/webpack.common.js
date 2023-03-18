@@ -32,7 +32,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve('/public'),
+    path: path.resolve('./public'),
   },
   plugins: [
     new CleanWebpackPlugin(),
